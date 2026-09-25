@@ -46,11 +46,12 @@
 
         .input-field {
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.75rem 1rem;
             border: 1px solid #e2e8f0;
             border-radius: 0.75rem;
             transition: all 0.3s;
             background-color: rgba(255, 255, 255, 0.7);
+            font-size: 16px; /* Prevents auto-zoom on iOS Safari */
         }
         .input-field:focus {
             outline: none;
@@ -60,59 +61,60 @@
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased min-h-screen pb-12">
+<body class="text-gray-800 antialiased min-h-screen pb-8 sm:pb-12">
 
-    <header class="bg-white/60 backdrop-blur-xl shadow-sm border-b border-white/50 sticky top-0 z-40 mb-8 transition-all">
-        <div class="max-w-4xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-center md:justify-between gap-4">
-            <div class="flex items-center gap-4 text-center md:text-right">
-                <img src="https://www.dhic.edu.eg/layout/images/logo.png" alt="لوجو معهد الدلتا العالي" class="h-16 w-auto object-contain drop-shadow-sm">
+    <header class="bg-white/60 backdrop-blur-xl shadow-sm border-b border-white/50 sticky top-0 z-40 mb-4 sm:mb-8 transition-all">
+        <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-right">
+                <img src="https://www.dhic.edu.eg/layout/images/logo.png" alt="لوجو معهد الدلتا العالي" class="h-12 sm:h-16 w-auto object-contain drop-shadow-sm">
                 <div>
-                    <h1 class="text-2xl md:text-3xl font-black text-primary tracking-tight">معهد الدلتا العالي</h1>
-                    <p class="text-sm md:text-base text-gray-500 font-semibold">لنظم المعلومات الإدارية والمحاسبية بالمنصورة</p>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-black text-primary tracking-tight">معهد الدلتا العالي</h1>
+                    <p class="text-xs sm:text-sm md:text-base text-gray-500 font-semibold">لنظم المعلومات الإدارية والمحاسبية بالمنصورة</p>
                 </div>
-            <div class="bg-white/80 backdrop-blur-md text-primary px-5 py-2.5 rounded-2xl border border-blue-100 shadow-sm">
+            </div>
+            <div class="bg-white/80 backdrop-blur-md text-primary px-4 sm:px-5 py-1.5 sm:py-2.5 rounded-2xl border border-blue-100 shadow-sm text-xs sm:text-sm md:text-base">
                 <span class="font-bold">استمارة تسجيل الأنشطة</span>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4">
-        <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-blue-900/10 overflow-hidden border border-white/60">
-            <div class="bg-gradient-to-r from-primary to-secondary p-5">
-                <h2 class="text-xl font-bold text-white text-center flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <main class="max-w-4xl mx-auto px-3 sm:px-6">
+        <div class="bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl shadow-blue-900/10 overflow-hidden border border-white/60">
+            <div class="bg-gradient-to-r from-primary to-secondary p-4 sm:p-5">
+                <h2 class="text-lg sm:text-xl font-bold text-white text-center flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     البيانات الأساسية ونوع النشاط
                 </h2>
             </div>
             
-            <form id="registrationForm" class="p-6 md:p-8 space-y-8">
+            <form id="registrationForm" class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <!-- Name -->
-                    <div class="col-span-1 md:col-span-2">
-                        <label for="fullName" class="block text-sm font-bold text-gray-700 mb-2">الاسم الرباعي <span class="text-red-500">*</span></label>
+                    <div class="col-span-1 sm:col-span-2">
+                        <label for="fullName" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">الاسم الرباعي <span class="text-red-500">*</span></label>
                         <input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك بالكامل" class="input-field">
                     </div>
 
                     <!-- Phone Number -->
                     <div>
-                        <label for="phoneNumber" class="block text-sm font-bold text-gray-700 mb-2">رقم الهاتف <span class="text-red-500">*</span></label>
+                        <label for="phoneNumber" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">رقم الهاتف <span class="text-red-500">*</span></label>
                         <input type="text" id="phoneNumber" name="phoneNumber" required pattern="\d{11}" maxlength="11" placeholder="مثال: 01012345678" class="input-field text-left" dir="ltr" title="يجب أن يتكون رقم الهاتف من 11 رقم">
-                        <p class="text-xs text-gray-500 mt-1">يجب أن يتكون من 11 رقم</p>
+                        <p class="text-[11px] sm:text-xs text-gray-500 mt-1">يجب أن يتكون من 11 رقم</p>
                     </div>
 
                     <!-- National ID -->
                     <div>
-                        <label for="nationalId" class="block text-sm font-bold text-gray-700 mb-2">الرقم القومي <span class="text-red-500">*</span></label>
+                        <label for="nationalId" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">الرقم القومي <span class="text-red-500">*</span></label>
                         <input type="text" id="nationalId" name="nationalId" required pattern="\d{14}" maxlength="14" placeholder="14 رقم" class="input-field text-left" dir="ltr" title="يجب أن يتكون الرقم القومي من 14 رقم">
-                        <p class="text-xs text-gray-500 mt-1">يجب أن يتكون من 14 رقم</p>
+                        <p class="text-[11px] sm:text-xs text-gray-500 mt-1">يجب أن يتكون من 14 رقم</p>
                     </div>
 
                     <!-- Governorate -->
                     <div>
-                        <label for="governorate" class="block text-sm font-bold text-gray-700 mb-2">المحافظة <span class="text-red-500">*</span></label>
+                        <label for="governorate" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">المحافظة <span class="text-red-500">*</span></label>
                         <select id="governorate" name="governorate" required class="input-field bg-white">
                             <option value="">اختر المحافظة...</option>
                             <!-- Will be populated by JS -->
@@ -121,7 +123,7 @@
 
                     <!-- Academic Year -->
                     <div>
-                        <label for="academicYear" class="block text-sm font-bold text-gray-700 mb-2">الفرقة الدراسية <span class="text-red-500">*</span></label>
+                        <label for="academicYear" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">الفرقة الدراسية <span class="text-red-500">*</span></label>
                         <select id="academicYear" name="academicYear" required class="input-field bg-white">
                             <option value="">اختر الفرقة...</option>
                             <option value="الاولى">الفرقة الأولى</option>
@@ -132,8 +134,8 @@
                     </div>
 
                     <!-- Address -->
-                    <div class="col-span-1 md:col-span-2">
-                        <label for="address" class="block text-sm font-bold text-gray-700 mb-2">العنوان بالتفصيل (مركز - مدينة - شارع) <span class="text-red-500">*</span></label>
+                    <div class="col-span-1 sm:col-span-2">
+                        <label for="address" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">العنوان بالتفصيل (مركز - مدينة - شارع) <span class="text-red-500">*</span></label>
                         <input type="text" id="address" name="address" required placeholder="مثال: المنصورة - حي الجامعة - شارع جيهان" class="input-field">
                     </div>
                 </div>
@@ -141,15 +143,15 @@
                 <hr class="border-blue-100">
 
                 <div>
-                    <h3 class="text-xl font-black text-primary mb-5 flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <h3 class="text-lg sm:text-xl font-black text-primary mb-4 sm:mb-5 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                         </svg>
                         اختيار النشاط
                     </h3>
                     
                     <div class="mb-6">
-                        <label for="activityType" class="block text-sm font-bold text-gray-700 mb-2">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
+                        <label for="activityType" class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
                         <select id="activityType" name="activityType" required class="input-field bg-white/90">
                             <option value="">اختر نوع النشاط...</option>
                             <option value="cultural">النشاط الثقافي</option>
@@ -161,94 +163,93 @@
                     </div>
 
                     <!-- Dynamic Sections Container -->
-                    <div id="dynamicActivities" class="bg-white/60 backdrop-blur-sm p-5 rounded-2xl border border-blue-100 shadow-inner hidden">
+                    <div id="dynamicActivities" class="bg-white/60 backdrop-blur-sm p-3.5 sm:p-5 rounded-2xl border border-blue-100 shadow-inner hidden">
                         
                         <div id="section_cultural" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-md text-gray-800 mb-4">مجالات النشاط الثقافي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الثقافي (يمكنك اختيار أكثر من مجال):</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-3">
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="اناشيد" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">اناشيد</div>
+                                    <div class="chip-style">اناشيد</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="ترانيم" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">ترانيم</div>
+                                    <div class="chip-style">ترانيم</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="شعر فصحى" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">شعر (فصحى)</div>
+                                    <div class="chip-style">شعر (فصحى)</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="شعر عامية" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">شعر (عامية)</div>
+                                    <div class="chip-style">شعر (عامية)</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="زجل" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">زجل</div>
+                                    <div class="chip-style">زجل</div>
                                 </label>
-                                <label class="cursor-pointer h-full col-span-2 sm:col-span-1">
+                                <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="حفظ القرآن كاملاً" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">حفظ القرآن كامل</div>
+                                    <div class="chip-style">حفظ القرآن كامل</div>
                                 </label>
-                                <label class="cursor-pointer h-full col-span-2 sm:col-span-1">
+                                <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="حفظ نصف القرآن" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">حفظ نصف القرآن</div>
+                                    <div class="chip-style">حفظ نصف القرآن</div>
                                 </label>
-                                <label class="cursor-pointer h-full col-span-2 sm:col-span-1">
+                                <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="الأحاديث الشريفة" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">الأحاديث الشريفة</div>
+                                    <div class="chip-style">الأحاديث الشريفة</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="الالقاء" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">الإلقاء</div>
+                                    <div class="chip-style">الإلقاء</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="cultural_sub" value="الخطابة" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">الخطابة</div>
+                                    <div class="chip-style">الخطابة</div>
                                 </label>
                                 <label class="cursor-pointer h-full col-span-2 sm:col-span-1">
                                     <input type="checkbox" name="cultural_sub" value="ابحاث دينية" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">أبحاث دينية</div>
+                                    <div class="chip-style">أبحاث دينية</div>
                                 </label>
                             </div>
                         </div>
 
                         <div id="section_scientific" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-md text-gray-800 mb-4">مجالات النشاط العلمي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط العلمي (يمكنك اختيار أكثر من مجال):</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="scientific_sub" value="برمجه" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">برمجة</div>
+                                    <div class="chip-style">برمجة</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="scientific_sub" value="تصميم المواقع" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">تصميم المواقع</div>
+                                    <div class="chip-style">تصميم المواقع</div>
                                 </label>
                                 <label class="cursor-pointer h-full col-span-2 sm:col-span-1">
                                     <input type="checkbox" name="scientific_sub" value="ابحاث علمية" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">أبحاث علمية</div>
+                                    <div class="chip-style">أبحاث علمية</div>
                                 </label>
                             </div>
                         </div>
 
                         <div id="section_social" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-md text-gray-800 mb-4">مجالات النشاط الاجتماعي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 gap-3">
+                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الاجتماعي (يمكنك اختيار أكثر من مجال):</h4>
+                            <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="social_sub" value="الشطرنج" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">الشطرنج</div>
+                                    <div class="chip-style">الشطرنج</div>
                                 </label>
                                 <label class="cursor-pointer h-full">
                                     <input type="checkbox" name="social_sub" value="ابحاث اجتماعية" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center">أبحاث اجتماعية</div>
+                                    <div class="chip-style">أبحاث اجتماعية</div>
                                 </label>
                             </div>
                         </div>
 
                         <div id="section_sports" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-md text-gray-800 mb-4">مجالات النشاط الرياضي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                                <!-- Reusable sport chips -->
+                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الرياضي (يمكنك اختيار أكثر من مجال):</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-3">
                                 <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة قدم" class="peer sr-only"><div class="chip-style">كرة قدم</div></label>
                                 <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة طائرة" class="peer sr-only"><div class="chip-style">كرة طائرة</div></label>
                                 <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة سلة" class="peer sr-only"><div class="chip-style">كرة سلة</div></label>
@@ -265,19 +266,19 @@
                         </div>
 
                         <div id="section_artistic" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-md text-gray-800 mb-4">مجالات النشاط الفني (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الفني (يمكنك اختيار أكثر من مجال):</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-4">
                                 <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="غناء" class="peer sr-only"><div class="chip-style">غناء</div></label>
                                 <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="عزف" class="peer sr-only"><div class="chip-style">عزف آلات</div></label>
                                 <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="اناشيد" class="peer sr-only"><div class="chip-style">أناشيد</div></label>
                                 <label class="cursor-pointer h-full" id="triggerFineArts">
                                     <input type="checkbox" id="checkFineArts" name="artistic_sub" value="الفن التشكيلي" class="peer sr-only">
-                                    <div class="px-2 py-3 rounded-xl border-2 border-secondary bg-blue-50 text-primary font-black text-center text-sm transition-all duration-300 peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md select-none h-full flex items-center justify-center">الفن التشكيلي</div>
+                                    <div class="px-2 py-2.5 sm:py-3 rounded-xl border-2 border-secondary bg-blue-50 text-primary font-black text-center text-xs sm:text-sm transition-all duration-300 peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md select-none h-full min-h-[44px] flex items-center justify-center">الفن التشكيلي</div>
                                 </label>
                             </div>
 
-                            <div id="fineArtsDetails" class="hidden mt-6 bg-white/80 p-5 rounded-2xl border border-blue-200 shadow-lg space-y-6">
-                                <h5 class="text-lg font-bold text-primary border-b border-blue-100 pb-3 flex items-center gap-2">
+                            <div id="fineArtsDetails" class="hidden mt-4 sm:mt-6 bg-white/80 p-4 sm:p-5 rounded-2xl border border-blue-200 shadow-lg space-y-5 sm:space-y-6">
+                                <h5 class="text-base sm:text-lg font-bold text-primary border-b border-blue-100 pb-2.5 flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                                     </svg>
@@ -285,7 +286,7 @@
                                 </h5>
                                 
                                 <div>
-                                    <h6 class="font-bold text-gray-700 mb-3">نوع الخامات (اختيار متعدد):</h6>
+                                    <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الخامات (اختيار متعدد):</h6>
                                     <div class="flex flex-wrap gap-2">
                                         <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="رصاص" class="peer sr-only"><div class="chip-sm">رصاص</div></label>
                                         <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="فحم" class="peer sr-only"><div class="chip-sm">فحم</div></label>
@@ -300,7 +301,7 @@
                                 </div>
 
                                 <div>
-                                    <h6 class="font-bold text-gray-700 mb-3">نوع الرسم (اختيار متعدد):</h6>
+                                    <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الرسم (اختيار متعدد):</h6>
                                     <div class="flex flex-wrap gap-2">
                                         <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تجريدي" class="peer sr-only"><div class="chip-sm">تجريدي</div></label>
                                         <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="سيريالي" class="peer sr-only"><div class="chip-sm">سيريالي</div></label>
@@ -318,7 +319,7 @@
                                 </div>
 
                                 <div>
-                                    <h6 class="font-bold text-gray-700 mb-3">نوع الموهبة (اختيار متعدد):</h6>
+                                    <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الموهبة (اختيار متعدد):</h6>
                                     <div class="flex flex-wrap gap-2">
                                         <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="رسم" class="peer sr-only"><div class="chip-sm">رسم</div></label>
                                         <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="حفر" class="peer sr-only"><div class="chip-sm">حفر</div></label>
@@ -343,10 +344,10 @@
                     </div>
                 </div>
 
-                <div class="pt-6">
-                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-blue-700 hover:to-primary text-white font-bold py-4 px-4 rounded-2xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 text-lg flex justify-center items-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none">
+                <div class="pt-4 sm:pt-6">
+                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-blue-700 hover:to-primary text-white font-bold py-3.5 sm:py-4 px-4 rounded-2xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 text-base sm:text-lg flex justify-center items-center gap-2.5 sm:gap-3 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none">
                         <span>تسجيل الانضمام للأنشطة</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
                         </svg>
                     </button>
@@ -355,20 +356,20 @@
         </div>
     </main>
 
-    <div id="successModal" class="fixed inset-0 bg-blue-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl transform scale-95 transition-all duration-300 border border-blue-100">
-            <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-50 mb-6 border-4 border-green-100">
-                <svg class="h-10 w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div id="successModal" class="fixed inset-0 bg-blue-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto text-center shadow-2xl transform scale-95 transition-all duration-300 border border-blue-100">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-green-50 mb-4 sm:mb-6 border-4 border-green-100">
+                <svg class="h-8 w-8 sm:h-10 sm:w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
-            <h3 class="text-2xl font-black text-gray-900 mb-4 tracking-tight">تم التسجيل بنجاح!</h3>
-            <div class="bg-light rounded-2xl p-5 mb-8 border border-blue-100">
-                <p class="text-primary font-bold text-lg leading-relaxed">
+            <h3 class="text-xl sm:text-2xl font-black text-gray-900 mb-3 sm:mb-4 tracking-tight">تم التسجيل بنجاح!</h3>
+            <div class="bg-light rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 border border-blue-100">
+                <p class="text-primary font-bold text-sm sm:text-lg leading-relaxed">
                     يرجى التوجه لإدارة رعاية الطلاب في الدور الثاني بجوار مدرج 2 في مبنى حاسبات
                 </p>
             </div>
-            <button onclick="closeModal()" class="w-full bg-primary hover:bg-blue-800 text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-md">
+            <button onclick="closeModal()" class="w-full bg-primary hover:bg-blue-800 text-white font-bold py-3 sm:py-3.5 px-4 rounded-xl transition-colors shadow-md text-sm sm:text-base">
                 فهمت، شكراً
             </button>
         </div>
@@ -376,10 +377,10 @@
 
     <script>
         document.querySelectorAll('.chip-style').forEach(el => {
-            el.className = "px-2 py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full flex items-center justify-center";
+            el.className = "px-2.5 py-2.5 sm:py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-xs sm:text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full min-h-[44px] flex items-center justify-center leading-snug";
         });
         document.querySelectorAll('.chip-sm').forEach(el => {
-            el.className = "px-3 py-1.5 rounded-full border border-blue-100 bg-white text-gray-700 text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-md hover:border-secondary select-none";
+            el.className = "px-3 py-2 rounded-full border border-blue-100 bg-white text-gray-700 text-xs sm:text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-md hover:border-secondary select-none min-h-[36px] flex items-center justify-center";
         });
 
         // Array of Egyptian Governorates
