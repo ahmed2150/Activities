@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>استمارة تسجيل الأنشطة | معهد الدلتا العالي</title>
-    
-    <!-- Google Fonts: Cairo for Arabic Typography -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Cairo', 'sans-serif'] },
                     colors: {
                         primary: '#004aad',
                         secondary: '#38b6ff',
@@ -29,559 +25,660 @@
         }
     </script>
     <style>
-        /* Custom Scrollbar and basic resets */
         @keyframes gradient-xy {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
         body {
-            /* Animated Gradient Background */
             background: linear-gradient(-45deg, #e0f2fe, #f0f7ff, #bae6fd, #e0f2fe, #f8fafc);
             background-size: 400% 400%;
             animation: gradient-xy 15s ease infinite;
             background-attachment: fixed;
         }
-
         .input-field {
             width: 100%;
             padding: 0.75rem 1rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #cbd5e1;
             border-radius: 0.75rem;
             transition: all 0.3s;
-            background-color: rgba(255, 255, 255, 0.7);
-            font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+            background-color: rgba(255, 255, 255, 0.85);
+            font-size: 16px;
         }
         .input-field:focus {
             outline: none;
             border-color: #38b6ff;
             background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(56, 182, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(56, 182, 255, 0.2);
+        }
+        label:focus-within .chip-style,
+        label:focus-within .chip-sm {
+            box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.5);
+        }
+        .locked-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(-45deg, #e0f2fe, #f0f7ff, #bae6fd, #e0f2fe);
+            background-size: 400% 400%;
+            animation: gradient-xy 15s ease infinite;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
     </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen pb-8 sm:pb-12">
 
-    <header class="bg-white/60 backdrop-blur-xl shadow-sm border-b border-white/50 sticky top-0 z-40 mb-4 sm:mb-8 transition-all">
-        <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
-            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-right">
-                <img src="https://www.dhic.edu.eg/layout/images/logo.png" alt="لوجو معهد الدلتا العالي" class="h-12 sm:h-16 w-auto object-contain drop-shadow-sm">
-                <div>
-                    <h1 class="text-xl sm:text-2xl md:text-3xl font-black text-primary tracking-tight">معهد الدلتا العالي</h1>
-                    <p class="text-xs sm:text-sm md:text-base text-gray-500 font-semibold">لنظم المعلومات الإدارية والمحاسبية بالمنصورة</p>
-                </div>
-            </div>
-            <div class="bg-white/80 backdrop-blur-md text-primary px-4 sm:px-5 py-1.5 sm:py-2.5 rounded-2xl border border-blue-100 shadow-sm text-xs sm:text-sm md:text-base">
-                <span class="font-bold">استمارة تسجيل الأنشطة</span>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-4xl mx-auto px-3 sm:px-6">
-        <div class="bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl shadow-blue-900/10 overflow-hidden border border-white/60">
-            <div class="bg-gradient-to-r from-primary to-secondary p-4 sm:p-5">
-                <h2 class="text-lg sm:text-xl font-bold text-white text-center flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    البيانات الأساسية ونوع النشاط
-                </h2>
-            </div>
-            
-            <form id="registrationForm" class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <!-- Name -->
-                    <div class="col-span-1 sm:col-span-2">
-                        <label for="fullName" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">الاسم الرباعي <span class="text-red-500">*</span></label>
-                        <input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك بالكامل" class="input-field">
-                    </div>
-
-                    <!-- Phone Number -->
-                    <div>
-                        <label for="phoneNumber" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">رقم الهاتف <span class="text-red-500">*</span></label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" required pattern="\d{11}" maxlength="11" placeholder="مثال: 01012345678" class="input-field text-left" dir="ltr" title="يجب أن يتكون رقم الهاتف من 11 رقم">
-                        <p class="text-[11px] sm:text-xs text-gray-500 mt-1">يجب أن يتكون من 11 رقم</p>
-                    </div>
-
-                    <!-- National ID -->
-                    <div>
-                        <label for="nationalId" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">الرقم القومي <span class="text-red-500">*</span></label>
-                        <input type="text" id="nationalId" name="nationalId" required pattern="\d{14}" maxlength="14" placeholder="14 رقم" class="input-field text-left" dir="ltr" title="يجب أن يتكون الرقم القومي من 14 رقم">
-                        <p class="text-[11px] sm:text-xs text-gray-500 mt-1">يجب أن يتكون من 14 رقم</p>
-                    </div>
-
-                    <!-- Governorate -->
-                    <div>
-                        <label for="governorate" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">المحافظة <span class="text-red-500">*</span></label>
-                        <select id="governorate" name="governorate" required class="input-field bg-white">
-                            <option value="">اختر المحافظة...</option>
-                            <!-- Will be populated by JS -->
-                        </select>
-                    </div>
-
-                    <!-- Academic Year -->
-                    <div>
-                        <label for="academicYear" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">الفرقة الدراسية <span class="text-red-500">*</span></label>
-                        <select id="academicYear" name="academicYear" required class="input-field bg-white">
-                            <option value="">اختر الفرقة...</option>
-                            <option value="الاولى">الفرقة الأولى</option>
-                            <option value="الثانية">الفرقة الثانية</option>
-                            <option value="الثالثة">الفرقة الثالثة</option>
-                            <option value="الرابعة">الفرقة الرابعة</option>
-                        </select>
-                    </div>
-
-                    <!-- Address -->
-                    <div class="col-span-1 sm:col-span-2">
-                        <label for="address" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5 sm:mb-2">العنوان بالتفصيل (مركز - مدينة - شارع) <span class="text-red-500">*</span></label>
-                        <input type="text" id="address" name="address" required placeholder="مثال: المنصورة - حي الجامعة - شارع جيهان" class="input-field">
-                    </div>
-                </div>
-
-                <hr class="border-blue-100">
-
-                <div>
-                    <h3 class="text-lg sm:text-xl font-black text-primary mb-4 sm:mb-5 flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                        </svg>
-                        اختيار النشاط
-                    </h3>
-                    
-                    <div class="mb-6">
-                        <label for="activityType" class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
-                        <select id="activityType" name="activityType" required class="input-field bg-white/90">
-                            <option value="">اختر نوع النشاط...</option>
-                            <option value="cultural">النشاط الثقافي</option>
-                            <option value="scientific">النشاط العلمي</option>
-                            <option value="social">النشاط الاجتماعي</option>
-                            <option value="artistic">النشاط الفني</option>
-                            <option value="sports">النشاط الرياضي</option>
-                        </select>
-                    </div>
-
-                    <!-- Dynamic Sections Container -->
-                    <div id="dynamicActivities" class="bg-white/60 backdrop-blur-sm p-3.5 sm:p-5 rounded-2xl border border-blue-100 shadow-inner hidden">
-                        
-                        <div id="section_cultural" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الثقافي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-3">
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="اناشيد" class="peer sr-only">
-                                    <div class="chip-style">اناشيد</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="ترانيم" class="peer sr-only">
-                                    <div class="chip-style">ترانيم</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="شعر فصحى" class="peer sr-only">
-                                    <div class="chip-style">شعر (فصحى)</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="شعر عامية" class="peer sr-only">
-                                    <div class="chip-style">شعر (عامية)</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="زجل" class="peer sr-only">
-                                    <div class="chip-style">زجل</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="حفظ القرآن كاملاً" class="peer sr-only">
-                                    <div class="chip-style">حفظ القرآن كامل</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="حفظ نصف القرآن" class="peer sr-only">
-                                    <div class="chip-style">حفظ نصف القرآن</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="الأحاديث الشريفة" class="peer sr-only">
-                                    <div class="chip-style">الأحاديث الشريفة</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="الالقاء" class="peer sr-only">
-                                    <div class="chip-style">الإلقاء</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="cultural_sub" value="الخطابة" class="peer sr-only">
-                                    <div class="chip-style">الخطابة</div>
-                                </label>
-                                <label class="cursor-pointer h-full col-span-2 sm:col-span-1">
-                                    <input type="checkbox" name="cultural_sub" value="ابحاث دينية" class="peer sr-only">
-                                    <div class="chip-style">أبحاث دينية</div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="section_scientific" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط العلمي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="scientific_sub" value="برمجه" class="peer sr-only">
-                                    <div class="chip-style">برمجة</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="scientific_sub" value="تصميم المواقع" class="peer sr-only">
-                                    <div class="chip-style">تصميم المواقع</div>
-                                </label>
-                                <label class="cursor-pointer h-full col-span-2 sm:col-span-1">
-                                    <input type="checkbox" name="scientific_sub" value="ابحاث علمية" class="peer sr-only">
-                                    <div class="chip-style">أبحاث علمية</div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="section_social" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الاجتماعي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="social_sub" value="الشطرنج" class="peer sr-only">
-                                    <div class="chip-style">الشطرنج</div>
-                                </label>
-                                <label class="cursor-pointer h-full">
-                                    <input type="checkbox" name="social_sub" value="ابحاث اجتماعية" class="peer sr-only">
-                                    <div class="chip-style">أبحاث اجتماعية</div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="section_sports" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الرياضي (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-3">
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة قدم" class="peer sr-only"><div class="chip-style">كرة قدم</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة طائرة" class="peer sr-only"><div class="chip-style">كرة طائرة</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة سلة" class="peer sr-only"><div class="chip-style">كرة سلة</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كمال اجسام" class="peer sr-only"><div class="chip-style">كمال أجسام</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="العاب قوى" class="peer sr-only"><div class="chip-style">ألعاب القوى</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كاراتيه" class="peer sr-only"><div class="chip-style">كاراتيه</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="مصارعة" class="peer sr-only"><div class="chip-style">المصارعة</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="جودو" class="peer sr-only"><div class="chip-style">الجودو</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="تنس" class="peer sr-only"><div class="chip-style">التنس</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="تايكوندو" class="peer sr-only"><div class="chip-style">التايكوندو</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كونج فو" class="peer sr-only"><div class="chip-style">الكونج فو</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="ملاكمة" class="peer sr-only"><div class="chip-style">الملاكمة</div></label>
-                            </div>
-                        </div>
-
-                        <div id="section_artistic" class="activity-section hidden space-y-4">
-                            <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3 sm:mb-4">مجالات النشاط الفني (يمكنك اختيار أكثر من مجال):</h4>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-4">
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="غناء" class="peer sr-only"><div class="chip-style">غناء</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="عزف" class="peer sr-only"><div class="chip-style">عزف آلات</div></label>
-                                <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="اناشيد" class="peer sr-only"><div class="chip-style">أناشيد</div></label>
-                                <label class="cursor-pointer h-full" id="triggerFineArts">
-                                    <input type="checkbox" id="checkFineArts" name="artistic_sub" value="الفن التشكيلي" class="peer sr-only">
-                                    <div class="px-2 py-2.5 sm:py-3 rounded-xl border-2 border-secondary bg-blue-50 text-primary font-black text-center text-xs sm:text-sm transition-all duration-300 peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md select-none h-full min-h-[44px] flex items-center justify-center">الفن التشكيلي</div>
-                                </label>
-                            </div>
-
-                            <div id="fineArtsDetails" class="hidden mt-4 sm:mt-6 bg-white/80 p-4 sm:p-5 rounded-2xl border border-blue-200 shadow-lg space-y-5 sm:space-y-6">
-                                <h5 class="text-base sm:text-lg font-bold text-primary border-b border-blue-100 pb-2.5 flex items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                                    </svg>
-                                    تفاصيل الفن التشكيلي
-                                </h5>
-                                
-                                <div>
-                                    <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الخامات (اختيار متعدد):</h6>
-                                    <div class="flex flex-wrap gap-2">
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="رصاص" class="peer sr-only"><div class="chip-sm">رصاص</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="فحم" class="peer sr-only"><div class="chip-sm">فحم</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="جواش" class="peer sr-only"><div class="chip-sm">جواش</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="سوفت باستيل" class="peer sr-only"><div class="chip-sm">سوفت باستيل</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="اكريليك" class="peer sr-only"><div class="chip-sm">اكريليك</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="زيت" class="peer sr-only"><div class="chip-sm">زيت</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="حبر" class="peer sr-only"><div class="chip-sm">حبر</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="الوان خشب" class="peer sr-only"><div class="chip-sm">الوان خشب</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="ماركر" class="peer sr-only"><div class="chip-sm">ماركر</div></label>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الرسم (اختيار متعدد):</h6>
-                                    <div class="flex flex-wrap gap-2">
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تجريدي" class="peer sr-only"><div class="chip-sm">تجريدي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="سيريالي" class="peer sr-only"><div class="chip-sm">سيريالي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تقليدي" class="peer sr-only"><div class="chip-sm">تقليدي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="واقعي" class="peer sr-only"><div class="chip-sm">واقعي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="بورتريه" class="peer sr-only"><div class="chip-sm">بورتريه</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="كاريكاتير" class="peer sr-only"><div class="chip-sm">كاريكاتير</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="بوب ارت" class="peer sr-only"><div class="chip-sm">بوب ارت</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="كلاسيكي" class="peer sr-only"><div class="chip-sm">كلاسيكي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="فانتازيا" class="peer sr-only"><div class="chip-sm">فانتازيا</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تكعيبي" class="peer sr-only"><div class="chip-sm">تكعيبي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تعبيري" class="peer sr-only"><div class="chip-sm">تعبيري</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="مينيمال" class="peer sr-only"><div class="chip-sm">مينيمال</div></label>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الموهبة (اختيار متعدد):</h6>
-                                    <div class="flex flex-wrap gap-2">
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="رسم" class="peer sr-only"><div class="chip-sm">رسم</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="حفر" class="peer sr-only"><div class="chip-sm">حفر</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="نحت" class="peer sr-only"><div class="chip-sm">نحت</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تطريز" class="peer sr-only"><div class="chip-sm">تطريز</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="خزف وفخار" class="peer sr-only"><div class="chip-sm">خزف وفخار</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="موازييك" class="peer sr-only"><div class="chip-sm">موازييك</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="ديكوباج" class="peer sr-only"><div class="chip-sm">ديكوباج</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تصوير فوتوغرافي" class="peer sr-only"><div class="chip-sm">تصوير فوتوغرافي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="حرق علي الخشب" class="peer sr-only"><div class="chip-sm">حرق علي الخشب</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تشكيل ورقي" class="peer sr-only"><div class="chip-sm">تشكيل ورقي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="ريزن ارت" class="peer sr-only"><div class="chip-sm">ريزن ارت</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="اشغال يدوية" class="peer sr-only"><div class="chip-sm">اشغال يدوية</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="خط عربي" class="peer sr-only"><div class="chip-sm">خط عربي</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تشكيل نحاس" class="peer sr-only"><div class="chip-sm">تشكيل نحاس</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تشكيل خشب" class="peer sr-only"><div class="chip-sm">تشكيل خشب</div></label>
-                                        <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="جرافيك" class="peer sr-only"><div class="chip-sm">جرافيك</div></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-4 sm:pt-6">
-                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-blue-700 hover:to-primary text-white font-bold py-3.5 sm:py-4 px-4 rounded-2xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 text-base sm:text-lg flex justify-center items-center gap-2.5 sm:gap-3 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none">
-                        <span>تسجيل الانضمام للأنشطة</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-                        </svg>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </main>
-
-    <div id="successModal" class="fixed inset-0 bg-blue-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto text-center shadow-2xl transform scale-95 transition-all duration-300 border border-blue-100">
-            <div class="mx-auto flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-green-50 mb-4 sm:mb-6 border-4 border-green-100">
-                <svg class="h-8 w-8 sm:h-10 sm:w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <!-- ═══════════════════════════════════════════════════════
+         🚫 شاشة القفل - تظهر إذا سبق التسجيل
+         ═══════════════════════════════════════════════════════ -->
+    <div id="lockedScreen" class="locked-screen hidden">
+        <div class="bg-white rounded-3xl p-6 sm:p-10 max-w-lg w-full text-center shadow-2xl border border-blue-100">
+            <div class="mx-auto flex items-center justify-center h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-green-50 mb-5 sm:mb-6 border-4 border-green-100">
+                <svg class="h-10 w-10 sm:h-12 sm:w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
-            <h3 class="text-xl sm:text-2xl font-black text-gray-900 mb-3 sm:mb-4 tracking-tight">تم التسجيل بنجاح!</h3>
-            <div class="bg-light rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 border border-blue-100">
-                <p class="text-primary font-bold text-sm sm:text-lg leading-relaxed">
-                    يرجى التوجه لإدارة رعاية الطلاب في الدور الثاني بجوار مدرج 2 في مبنى حاسبات
+
+            <h1 class="text-2xl sm:text-3xl font-black text-gray-900 mb-3 tracking-tight">
+                تم التسجيل بنجاح! ✅
+            </h1>
+
+            <p class="text-sm sm:text-base text-gray-600 mb-5 font-semibold">
+                لقد قمت بالتسجيل مسبقاً في أنشطة معهد الدلتا العالي.
+            </p>
+
+            <div class="bg-blue-50 rounded-2xl p-4 sm:p-5 mb-5 border border-blue-100 text-right space-y-2">
+                <div class="flex justify-between items-center text-xs sm:text-sm">
+                    <span class="font-bold text-gray-600">الاسم:</span>
+                    <span id="lockedName" class="font-black text-primary">—</span>
+                </div>
+                <div class="flex justify-between items-center text-xs sm:text-sm">
+                    <span class="font-bold text-gray-600">الرقم القومي:</span>
+                    <span id="lockedNid" class="font-black text-primary font-mono" dir="ltr">—</span>
+                </div>
+                <div class="flex justify-between items-center text-xs sm:text-sm">
+                    <span class="font-bold text-gray-600">تاريخ التسجيل:</span>
+                    <span id="lockedDate" class="font-black text-primary">—</span>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-4 sm:p-5 mb-6">
+                <p class="text-white font-extrabold text-sm sm:text-base leading-relaxed">
+                    📍 يرجى التوجه لإدارة رعاية الطلاب في
+                    <span class="underline decoration-white/70 font-black">الدور الثاني</span>
+                    بجوار مدرج 2 بمبنى حاسبات لاستكمال الإجراءات.
                 </p>
             </div>
-            <button onclick="closeModal()" class="w-full bg-primary hover:bg-blue-800 text-white font-bold py-3 sm:py-3.5 px-4 rounded-xl transition-colors shadow-md text-sm sm:text-base">
-                فهمت، شكراً
-            </button>
+
+            <p class="text-[11px] sm:text-xs text-gray-400 font-semibold">
+                لا يمكن التسجيل مرة أخرى من هذا الجهاز.<br>
+                للتعديل، تواصل مع إدارة رعاية الطلاب.
+            </p>
         </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════════════════
+         📝 صفحة التسجيل
+         ═══════════════════════════════════════════════════════ -->
+    <div id="registrationPage">
+
+        <header class="bg-white/70 backdrop-blur-xl shadow-sm border-b border-white/50 sticky top-0 z-40 mb-4 sm:mb-8">
+            <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+                <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-right">
+                    <img src="https://www.dhic.edu.eg/layout/images/logo.png" alt="لوجو معهد الدلتا العالي" class="h-12 sm:h-16 w-auto object-contain drop-shadow-sm" onerror="this.style.display='none'">
+                    <div>
+                        <h1 class="text-xl sm:text-2xl md:text-3xl font-black text-primary tracking-tight">معهد الدلتا العالي</h1>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-500 font-semibold">لنظم المعلومات الإدارية والمحاسبية بالمنصورة</p>
+                    </div>
+                </div>
+                <div class="bg-white/90 text-primary px-4 sm:px-5 py-1.5 sm:py-2.5 rounded-2xl border border-blue-100 shadow-sm text-xs sm:text-sm md:text-base font-extrabold flex items-center gap-2">
+                    <span class="inline-block w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span>استمارة تسجيل الأنشطة</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto px-3 sm:px-6">
+            <div class="bg-white/85 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl shadow-blue-900/10 overflow-hidden border border-white/60">
+                <div class="bg-gradient-to-r from-primary to-secondary p-4 sm:p-5">
+                    <h2 class="text-lg sm:text-xl font-bold text-white text-center flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        البيانات الأساسية واختيار النشاط
+                    </h2>
+                </div>
+
+                <div id="errorAlert" role="alert" class="hidden m-4 sm:m-6 p-4 rounded-2xl bg-red-50 border-2 border-red-200 text-red-700 text-sm font-bold flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span id="errorAlertText">تنبيه</span>
+                </div>
+
+                <form id="registrationForm" class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8" novalidate>
+
+                    <!-- البيانات الأساسية -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="col-span-1 sm:col-span-2">
+                            <label for="fullName" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5">الاسم الرباعي <span class="text-red-500">*</span></label>
+                            <input type="text" id="fullName" required placeholder="أدخل اسمك بالكامل باللغة العربية" class="input-field" minlength="8" maxlength="100">
+                        </div>
+
+                        <div>
+                            <label for="phoneNumber" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5">رقم الهاتف <span class="text-red-500">*</span></label>
+                            <input type="tel" id="phoneNumber" required placeholder="01012345678" class="input-field text-left" dir="ltr" maxlength="11" inputmode="numeric">
+                            <p class="text-[11px] sm:text-xs text-gray-500 mt-1">11 رقم يبدأ بـ 010/011/012/015</p>
+                        </div>
+
+                        <div>
+                            <label for="nationalId" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5">الرقم القومي <span class="text-red-500">*</span></label>
+                            <input type="text" id="nationalId" required placeholder="14 رقم" class="input-field text-left" dir="ltr" maxlength="14" inputmode="numeric">
+                            <p class="text-[11px] sm:text-xs text-gray-500 mt-1">14 رقم يبدأ بـ 2 أو 3</p>
+                        </div>
+
+                        <div>
+                            <label for="governorate" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5">المحافظة <span class="text-red-500">*</span></label>
+                            <select id="governorate" required class="input-field bg-white">
+                                <option value="">اختر المحافظة...</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="academicYear" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5">الفرقة الدراسية <span class="text-red-500">*</span></label>
+                            <select id="academicYear" required class="input-field bg-white">
+                                <option value="">اختر الفرقة...</option>
+                                <option value="الفرقة الأولى">الفرقة الأولى</option>
+                                <option value="الفرقة الثانية">الفرقة الثانية</option>
+                                <option value="الفرقة الثالثة">الفرقة الثالثة</option>
+                                <option value="الفرقة الرابعة">الفرقة الرابعة</option>
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-2">
+                            <label for="address" class="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5">العنوان بالتفصيل <span class="text-red-500">*</span></label>
+                            <input type="text" id="address" required placeholder="مثال: المنصورة - حي الجامعة - شارع جيهان" class="input-field" minlength="5" maxlength="200">
+                        </div>
+                    </div>
+
+                    <hr class="border-blue-100">
+
+                    <!-- اختيار النشاط -->
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-black text-primary mb-4 sm:mb-5">اختيار النشاط المطلوب</h3>
+
+                        <div class="mb-6">
+                            <label for="activityType" class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
+                            <select id="activityType" required class="input-field bg-white">
+                                <option value="">اختر نوع النشاط...</option>
+                                <option value="cultural">النشاط الثقافي</option>
+                                <option value="scientific">النشاط العلمي</option>
+                                <option value="social">النشاط الاجتماعي</option>
+                                <option value="artistic">النشاط الفني</option>
+                                <option value="sports">النشاط الرياضي</option>
+                            </select>
+                        </div>
+
+                        <div id="dynamicActivities" class="bg-white/60 backdrop-blur-sm p-3.5 sm:p-5 rounded-2xl border border-blue-100 shadow-inner hidden">
+
+                            <!-- Cultural -->
+                            <div id="section_cultural" class="activity-section hidden space-y-4">
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الثقافي (اختر مجالاً أو أكثر):</h4>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="اناشيد" class="peer sr-only"><div class="chip-style">أناشيد</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="ترانيم" class="peer sr-only"><div class="chip-style">ترانيم</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="شعر فصحى" class="peer sr-only"><div class="chip-style">شعر (فصحى)</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="شعر عامية" class="peer sr-only"><div class="chip-style">شعر (عامية)</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="زجل" class="peer sr-only"><div class="chip-style">زجل</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="حفظ القرآن كاملاً" class="peer sr-only"><div class="chip-style">حفظ القرآن كامل</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="حفظ نصف القرآن" class="peer sr-only"><div class="chip-style">حفظ نصف القرآن</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الأحاديث الشريفة" class="peer sr-only"><div class="chip-style">الأحاديث الشريفة</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الالقاء" class="peer sr-only"><div class="chip-style">الإلقاء</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الخطابة" class="peer sr-only"><div class="chip-style">الخطابة</div></label>
+                                    <label class="cursor-pointer h-full col-span-2 sm:col-span-1"><input type="checkbox" name="cultural_sub" value="ابحاث دينية" class="peer sr-only"><div class="chip-style">أبحاث دينية</div></label>
+                                </div>
+                            </div>
+
+                            <!-- Scientific -->
+                            <div id="section_scientific" class="activity-section hidden space-y-4">
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط العلمي (اختر مجالاً أو أكثر):</h4>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="scientific_sub" value="برمجه" class="peer sr-only"><div class="chip-style">برمجة</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="scientific_sub" value="تصميم المواقع" class="peer sr-only"><div class="chip-style">تصميم المواقع</div></label>
+                                    <label class="cursor-pointer h-full col-span-2 sm:col-span-1"><input type="checkbox" name="scientific_sub" value="ابحاث علمية" class="peer sr-only"><div class="chip-style">أبحاث علمية</div></label>
+                                </div>
+                            </div>
+
+                            <!-- Social -->
+                            <div id="section_social" class="activity-section hidden space-y-4">
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الاجتماعي (اختر مجالاً أو أكثر):</h4>
+                                <div class="grid grid-cols-2 gap-2.5">
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الشطرنج" class="peer sr-only"><div class="chip-style">الشطرنج</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="ابحاث اجتماعية" class="peer sr-only"><div class="chip-style">أبحاث اجتماعية</div></label>
+                                </div>
+                            </div>
+
+                            <!-- Sports -->
+                            <div id="section_sports" class="activity-section hidden space-y-4">
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الرياضي (اختر مجالاً أو أكثر):</h4>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة قدم" class="peer sr-only"><div class="chip-style">كرة قدم</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة طائرة" class="peer sr-only"><div class="chip-style">كرة طائرة</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة سلة" class="peer sr-only"><div class="chip-style">كرة سلة</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كمال اجسام" class="peer sr-only"><div class="chip-style">كمال أجسام</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="العاب قوى" class="peer sr-only"><div class="chip-style">ألعاب القوى</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كاراتيه" class="peer sr-only"><div class="chip-style">كاراتيه</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="مصارعة" class="peer sr-only"><div class="chip-style">المصارعة</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="جودو" class="peer sr-only"><div class="chip-style">الجودو</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="تنس" class="peer sr-only"><div class="chip-style">التنس</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="تايكوندو" class="peer sr-only"><div class="chip-style">التايكوندو</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كونج فو" class="peer sr-only"><div class="chip-style">الكونج فو</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="ملاكمة" class="peer sr-only"><div class="chip-style">الملاكمة</div></label>
+                                </div>
+                            </div>
+
+                            <!-- Artistic -->
+                            <div id="section_artistic" class="activity-section hidden space-y-4">
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الفني (اختر مجالاً أو أكثر):</h4>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4">
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="غناء" class="peer sr-only"><div class="chip-style">غناء</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="عزف" class="peer sr-only"><div class="chip-style">عزف آلات</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="اناشيد" class="peer sr-only"><div class="chip-style">أناشيد</div></label>
+                                    <label class="cursor-pointer h-full">
+                                        <input type="checkbox" id="checkFineArts" name="artistic_sub" value="الفن التشكيلي" class="peer sr-only">
+                                        <div class="chip-special">الفن التشكيلي</div>
+                                    </label>
+                                </div>
+
+                                <div id="fineArtsDetails" class="hidden mt-4 sm:mt-6 bg-white/80 p-4 sm:p-5 rounded-2xl border border-blue-200 shadow-lg space-y-5">
+                                    <h5 class="text-base sm:text-lg font-bold text-primary border-b border-blue-100 pb-2.5 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                        </svg>
+                                        تفاصيل الفن التشكيلي <span class="text-red-500 text-sm">(اختياري)</span>
+                                    </h5>
+
+                                    <div>
+                                        <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الخامات:</h6>
+                                        <div class="flex flex-wrap gap-2">
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="رصاص" class="peer sr-only"><div class="chip-sm">رصاص</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="فحم" class="peer sr-only"><div class="chip-sm">فحم</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="جواش" class="peer sr-only"><div class="chip-sm">جواش</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="سوفت باستيل" class="peer sr-only"><div class="chip-sm">سوفت باستيل</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="اكريليك" class="peer sr-only"><div class="chip-sm">اكريليك</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="زيت" class="peer sr-only"><div class="chip-sm">زيت</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="حبر" class="peer sr-only"><div class="chip-sm">حبر</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="الوان خشب" class="peer sr-only"><div class="chip-sm">الوان خشب</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_materials" value="ماركر" class="peer sr-only"><div class="chip-sm">ماركر</div></label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الرسم:</h6>
+                                        <div class="flex flex-wrap gap-2">
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تجريدي" class="peer sr-only"><div class="chip-sm">تجريدي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="سيريالي" class="peer sr-only"><div class="chip-sm">سيريالي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تقليدي" class="peer sr-only"><div class="chip-sm">تقليدي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="واقعي" class="peer sr-only"><div class="chip-sm">واقعي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="بورتريه" class="peer sr-only"><div class="chip-sm">بورتريه</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="كاريكاتير" class="peer sr-only"><div class="chip-sm">كاريكاتير</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="بوب ارت" class="peer sr-only"><div class="chip-sm">بوب ارت</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="كلاسيكي" class="peer sr-only"><div class="chip-sm">كلاسيكي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="فانتازيا" class="peer sr-only"><div class="chip-sm">فانتازيا</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تكعيبي" class="peer sr-only"><div class="chip-sm">تكعيبي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="تعبيري" class="peer sr-only"><div class="chip-sm">تعبيري</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_drawing" value="مينيمال" class="peer sr-only"><div class="chip-sm">مينيمال</div></label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h6 class="font-bold text-xs sm:text-sm text-gray-700 mb-2.5">نوع الموهبة:</h6>
+                                        <div class="flex flex-wrap gap-2">
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="رسم" class="peer sr-only"><div class="chip-sm">رسم</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="حفر" class="peer sr-only"><div class="chip-sm">حفر</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="نحت" class="peer sr-only"><div class="chip-sm">نحت</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تطريز" class="peer sr-only"><div class="chip-sm">تطريز</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="خزف وفخار" class="peer sr-only"><div class="chip-sm">خزف وفخار</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="موازييك" class="peer sr-only"><div class="chip-sm">موازييك</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="ديكوباج" class="peer sr-only"><div class="chip-sm">ديكوباج</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تصوير فوتوغرافي" class="peer sr-only"><div class="chip-sm">تصوير فوتوغرافي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="حرق علي الخشب" class="peer sr-only"><div class="chip-sm">حرق على الخشب</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تشكيل ورقي" class="peer sr-only"><div class="chip-sm">تشكيل ورقي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="ريزن ارت" class="peer sr-only"><div class="chip-sm">ريزن ارت</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="اشغال يدوية" class="peer sr-only"><div class="chip-sm">أشغال يدوية</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="خط عربي" class="peer sr-only"><div class="chip-sm">خط عربي</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تشكيل نحاس" class="peer sr-only"><div class="chip-sm">تشكيل نحاس</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="تشكيل خشب" class="peer sr-only"><div class="chip-sm">تشكيل خشب</div></label>
+                                            <label class="cursor-pointer"><input type="checkbox" name="finearts_talent" value="جرافيك" class="peer sr-only"><div class="chip-sm">جرافيك</div></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="pt-4 sm:pt-6">
+                        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-blue-700 hover:to-primary text-white font-bold py-3.5 sm:py-4 px-4 rounded-2xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 text-base sm:text-lg flex justify-center items-center gap-2.5 sm:gap-3 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none">
+                            <span>تسجيل الانضمام للأنشطة</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
     <script>
-        document.querySelectorAll('.chip-style').forEach(el => {
+        // ═══════════════════════════════════════════════════════════
+        //  ⚠️⚠️ ضع رابط الـ Web App هنا ⚠️⚠️
+        // ═══════════════════════════════════════════════════════════
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7KahJgzymdy83jX1Wj7lyWjzrNDuf2LIufSgtgjcU1SW5eWq2HKEtTb8Qu0qN8kQtWg/exec';
+        const STORAGE_KEY = 'dhic_activity_registration';
+
+        // ═══════════════════════════════════════════════════════════
+        //  🔒 فحص التسجيل السابق
+        // ═══════════════════════════════════════════════════════════
+        function checkIfAlreadyRegistered() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    showLockedScreen(data);
+                    return true;
+                }
+            } catch (e) {
+                console.error('localStorage error:', e);
+            }
+            return false;
+        }
+
+        function showLockedScreen(data) {
+            document.getElementById('registrationPage').style.display = 'none';
+
+            document.getElementById('lockedName').textContent = data.fullName || '—';
+            document.getElementById('lockedNid').textContent = data.nationalId || '—';
+
+            let dateStr = '—';
+            if (data.registeredAt) {
+                try {
+                    const d = new Date(data.registeredAt);
+                    const opts = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                    dateStr = d.toLocaleDateString('ar-EG', opts);
+                } catch (e) {
+                    dateStr = data.registeredAt;
+                }
+            }
+            document.getElementById('lockedDate').textContent = dateStr;
+
+            document.getElementById('lockedScreen').classList.remove('hidden');
+        }
+
+        function saveRegistration(data) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    fullName: data.fullName,
+                    nationalId: data.nationalId,
+                    phoneNumber: data.phoneNumber,
+                    registeredAt: new Date().toISOString()
+                }));
+            } catch (e) {
+                console.error('Save error:', e);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', checkIfAlreadyRegistered);
+
+        // ═══════════════════════════════════════════════════════════
+        //  Chip styling
+        // ═══════════════════════════════════════════════════════════
+        document.querySelectorAll('.chip-style').forEach(function(el) {
             el.className = "px-2.5 py-2.5 sm:py-3 rounded-xl border border-blue-100 bg-white text-primary font-bold text-center text-xs sm:text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md hover:border-secondary select-none h-full min-h-[44px] flex items-center justify-center leading-snug";
         });
-        document.querySelectorAll('.chip-sm').forEach(el => {
+
+        document.querySelectorAll('.chip-sm').forEach(function(el) {
             el.className = "px-3 py-2 rounded-full border border-blue-100 bg-white text-gray-700 text-xs sm:text-sm transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-md hover:border-secondary select-none min-h-[36px] flex items-center justify-center";
         });
 
-        // Array of Egyptian Governorates
-        const governorates = [
-            "القاهرة", "الإسكندرية", "بورسعيد", "السويس", "دمياط", "الدقهلية", 
-            "الشرقية", "القليوبية", "كفر الشيخ", "الغربية", "المنوفية", "البحيرة", 
-            "الإسماعيلية", "الجيزة", "بني سويف", "الفيوم", "المنيا", "أسيوط", 
-            "سوهاج", "قنا", "أسوان", "الأقصر", "البحر الأحمر", "الوادي الجديد", 
-            "مطروح", "شمال سيناء", "جنوب سيناء"
-        ];
-
-        // Populate Governorates Dropdown
-        const govSelect = document.getElementById('governorate');
-        governorates.forEach(gov => {
-            let option = document.createElement('option');
-            option.value = gov;
-            option.textContent = gov;
-            // Set Dakahlia as default since the institute is in Mansoura
-            if (gov === "الدقهلية") {
-                option.selected = true;
-            }
-            govSelect.appendChild(option);
+        document.querySelectorAll('.chip-special').forEach(function(el) {
+            el.className = "px-2 py-2.5 sm:py-3 rounded-xl border-2 border-secondary bg-blue-50 text-primary font-black text-center text-xs sm:text-sm transition-all duration-300 peer-checked:bg-secondary peer-checked:text-white peer-checked:border-secondary peer-checked:shadow-lg hover:-translate-y-0.5 hover:shadow-md select-none h-full min-h-[44px] flex items-center justify-center";
         });
 
-        // Handle Activity Type Changes to show relevant sections
+        // ═══════════════════════════════════════════════════════════
+        //  المحافظات
+        // ═══════════════════════════════════════════════════════════
+        const governorates = [
+            "الدقهلية", "القاهرة", "الإسكندرية", "بورسعيد", "السويس", "دمياط",
+            "الشرقية", "القليوبية", "كفر الشيخ", "الغربية", "المنوفية", "البحيرة",
+            "الإسماعيلية", "الجيزة", "بني سويف", "الفيوم", "المنيا", "أسيوط",
+            "سوهاج", "قنا", "أسوان", "الأقصر", "البحر الأحمر", "الوادي الجديد",
+            "مطروح", "شمال سيناء", "جنوب سيناء"
+        ];
+        const govSelect = document.getElementById('governorate');
+        if (govSelect) {
+            governorates.forEach(function(gov) {
+                const option = document.createElement('option');
+                option.value = gov;
+                option.textContent = gov;
+                govSelect.appendChild(option);
+            });
+            govSelect.value = "الدقهلية";
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        //  تبديل الأقسام
+        // ═══════════════════════════════════════════════════════════
         const activitySelect = document.getElementById('activityType');
         const dynamicActivitiesContainer = document.getElementById('dynamicActivities');
         const activitySections = document.querySelectorAll('.activity-section');
 
-        activitySelect.addEventListener('change', function() {
-            const selectedVal = this.value;
-            
-            // Hide all sections first
-            activitySections.forEach(section => {
-                section.classList.add('hidden');
-                // Uncheck all inputs within hidden sections so they don't submit accidentally
-                const checkboxes = section.querySelectorAll('input[type="checkbox"]');
-                checkboxes.forEach(cb => cb.checked = false);
-            });
-            
-            // Also hide fine arts specifics
-            document.getElementById('fineArtsDetails').classList.add('hidden');
+        if (activitySelect) {
+            activitySelect.addEventListener('change', function() {
+                const selectedVal = this.value;
 
-            if (selectedVal) {
-                dynamicActivitiesContainer.classList.remove('hidden');
-                const targetSection = document.getElementById('section_' + selectedVal);
-                if (targetSection) {
-                    targetSection.classList.remove('hidden');
+                activitySections.forEach(function(section) {
+                    section.classList.add('hidden');
+                    section.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+                        cb.checked = false;
+                    });
+                });
+
+                document.getElementById('fineArtsDetails').classList.add('hidden');
+
+                if (selectedVal) {
+                    dynamicActivitiesContainer.classList.remove('hidden');
+                    const target = document.getElementById('section_' + selectedVal);
+                    if (target) target.classList.remove('hidden');
+                } else {
+                    dynamicActivitiesContainer.classList.add('hidden');
                 }
-            } else {
-                dynamicActivitiesContainer.classList.add('hidden');
-            }
-        });
+            });
+        }
 
-        // Handle Fine Arts checkbox toggle
+        // ═══════════════════════════════════════════════════════════
+        //  الفن التشكيلي
+        // ═══════════════════════════════════════════════════════════
         const checkFineArts = document.getElementById('checkFineArts');
         const fineArtsDetails = document.getElementById('fineArtsDetails');
 
-        checkFineArts.addEventListener('change', function() {
-            if (this.checked) {
-                fineArtsDetails.classList.remove('hidden');
-            } else {
-                fineArtsDetails.classList.add('hidden');
-                // clear sub-selections
-                const subCheckboxes = fineArtsDetails.querySelectorAll('input[type="checkbox"]');
-                subCheckboxes.forEach(cb => cb.checked = false);
-            }
-        });
+        if (checkFineArts) {
+            checkFineArts.addEventListener('change', function() {
+                if (this.checked) {
+                    fineArtsDetails.classList.remove('hidden');
+                } else {
+                    fineArtsDetails.classList.add('hidden');
+                    fineArtsDetails.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+                        cb.checked = false;
+                    });
+                }
+            });
+        }
 
-        // Form Validation & Submission
+        // ═══════════════════════════════════════════════════════════
+        //  الإرسال
+        // ═══════════════════════════════════════════════════════════
         const form = document.getElementById('registrationForm');
-        const modal = document.getElementById('successModal');
         const submitBtn = document.getElementById('submitBtn');
+        const errorAlert = document.getElementById('errorAlert');
+        const errorAlertText = document.getElementById('errorAlertText');
 
-        // ======== رابط السكربت الخاص بجوجل شيت ========
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzeuZkdALM21S-Af5V1eaFfY-BQzr-iOXmqgBR7tp7nSGomwAe7a9EFsjwBJ-4dADVB/exec'; 
-        // ===============================================
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                hideAlert();
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault(); 
-            
-            const nationalId = document.getElementById('nationalId').value;
+                const fullName = document.getElementById('fullName').value.trim();
+                const phoneNumber = document.getElementById('phoneNumber').value.trim();
+                const nationalId = document.getElementById('nationalId').value.trim();
+                const governorate = document.getElementById('governorate').value;
+                const academicYear = document.getElementById('academicYear').value;
+                const address = document.getElementById('address').value.trim();
+                const activityKey = activitySelect.value;
 
-            // حماية مبدئية من المتصفح (Local Storage)
-            if(localStorage.getItem('registered_national_id') === nationalId) {
-                showTempError("لقد قمت بالتسجيل مسبقاً بهذا الرقم القومي من هذا الجهاز.");
-                return;
-            }
-            
-            const selectedActivity = activitySelect.value;
-            let selectedActivitiesList = [];
-
-            if(selectedActivity) {
-                const section = document.getElementById('section_' + selectedActivity);
-                const checkedOptions = section.querySelectorAll('input[type="checkbox"]:not([name^="finearts_"]):checked');
-                
-                if(checkedOptions.length === 0) {
-                    showTempError("الرجاء اختيار مجال واحد على الأقل من مجالات النشاط المحدد.");
+                // ─── التحقق ───
+                if (fullName.length < 8) {
+                    showAlert("الرجاء إدخال الاسم الرباعي كاملاً (8 أحرف على الأقل).");
+                    document.getElementById('fullName').focus();
                     return;
                 }
 
-                checkedOptions.forEach(cb => selectedActivitiesList.push(cb.value));
-
-                if(selectedActivity === 'artistic' && checkFineArts.checked) {
-                    const getCheckedValues = (name) => Array.from(fineArtsDetails.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
-                    
-                    const materials = getCheckedValues('finearts_materials');
-                    const drawings = getCheckedValues('finearts_drawing');
-                    const talents = getCheckedValues('finearts_talent');
-                    
-                    if(materials.length === 0 && drawings.length === 0 && talents.length === 0) {
-                        showTempError("الرجاء اختيار تفاصيل الفن التشكيلي (الخامات، نوع الرسم، أو الموهبة).");
-                        return;
-                    }
-
-                    if(materials.length) selectedActivitiesList.push("[خامات: " + materials.join("، ") + "]");
-                    if(drawings.length) selectedActivitiesList.push("[رسم: " + drawings.join("، ") + "]");
-                    if(talents.length) selectedActivitiesList.push("[موهبة: " + talents.join("، ") + "]");
-                }
-            }
-
-            // تجميع البيانات للإرسال
-            const payload = {
-                fullName: document.getElementById('fullName').value,
-                phoneNumber: document.getElementById('phoneNumber').value,
-                nationalId: nationalId,
-                governorate: document.getElementById('governorate').value,
-                academicYear: document.getElementById('academicYear').value,
-                address: document.getElementById('address').value,
-                activityType: activitySelect.options[activitySelect.selectedIndex].text,
-                selectedActivities: selectedActivitiesList
-            };
-
-            // تغيير حالة الزر لـ "جاري التسجيل"
-            const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `
-                <span>جاري التسجيل، يرجى الانتظار...</span>
-                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-            `;
-
-            try {
-                if (SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
-                    throw new Error("يرجى وضع رابط جوجل سكربت الصحيح في الكود!");
+                if (!/^01[0125][0-9]{8}$/.test(phoneNumber)) {
+                    showAlert("رقم الهاتف يجب أن يتكون من 11 رقم ويبدأ بـ (010, 011, 012, 015).");
+                    document.getElementById('phoneNumber').focus();
+                    return;
                 }
 
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8',
-                    },
-                    body: JSON.stringify(payload)
+                if (!/^[23][0-9]{13}$/.test(nationalId)) {
+                    showAlert("الرقم القومي يجب أن يتكون من 14 رقم ويبدأ بـ 2 أو 3.");
+                    document.getElementById('nationalId').focus();
+                    return;
+                }
+
+                if (!governorate || !academicYear || address.length < 5) {
+                    showAlert("الرجاء استكمال جميع البيانات الأساسية.");
+                    return;
+                }
+
+                if (!activityKey) {
+                    showAlert("الرجاء اختيار نوع النشاط.");
+                    activitySelect.focus();
+                    return;
+                }
+
+                // ─── التحقق من التكرار المحلي ───
+                const existing = localStorage.getItem(STORAGE_KEY);
+                if (existing) {
+                    try {
+                        const prev = JSON.parse(existing);
+                        if (prev.nationalId === nationalId) {
+                            showLockedScreen(prev);
+                            return;
+                        }
+                    } catch (err) {}
+                }
+
+                // ─── جمع المجالات ───
+                const section = document.getElementById('section_' + activityKey);
+                const checkedOptions = section.querySelectorAll('input[type="checkbox"]:not([name^="finearts_"]):checked');
+                if (checkedOptions.length === 0) {
+                    showAlert("الرجاء اختيار مجال واحد على الأقل من مجالات النشاط.");
+                    return;
+                }
+
+                const selectedActivitiesList = [];
+                checkedOptions.forEach(function(cb) {
+                    selectedActivitiesList.push(cb.value);
                 });
 
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    // حفظ الرقم القومي في المتصفح لمنع التكرار لاحقاً
-                    localStorage.setItem('registered_national_id', nationalId);
-                    
-                    // إظهار رسالة النجاح
-                    modal.classList.remove('hidden');
-                    
-                    // إعادة ضبط الاستمارة
-                    form.reset();
-                    dynamicActivitiesContainer.classList.add('hidden');
-                    fineArtsDetails.classList.add('hidden');
-                    govSelect.value = "الدقهلية"; 
-                } else {
-                    // إظهار خطأ من السيرفر (مثل: الرقم القومي مسجل بالفعل)
-                    showTempError(result.message || "حدث خطأ أثناء التسجيل.");
+                // ─── الفن التشكيلي ───
+                let fineArtsData = { materials: [], drawings: [], talents: [] };
+                if (activityKey === 'artistic' && checkFineArts.checked) {
+                    const getVals = function(name) {
+                        return Array.from(fineArtsDetails.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
+                            return cb.value;
+                        });
+                    };
+                    fineArtsData.materials = getVals('finearts_materials');
+                    fineArtsData.drawings = getVals('finearts_drawing');
+                    fineArtsData.talents = getVals('finearts_talent');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                showTempError(error.message === "يرجى وضع رابط جوجل سكربت الصحيح في الكود!" ? error.message : "حدث خطأ في الاتصال، يرجى المحاولة مرة أخرى.");
-            } finally {
-                // إعادة الزر لحالته الطبيعية
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHtml;
-            }
-        });
 
-        function closeModal() {
-            modal.classList.add('hidden');
+                // ─── Payload ───
+                const payload = {
+                    fullName: fullName,
+                    phoneNumber: phoneNumber,
+                    nationalId: nationalId,
+                    governorate: governorate,
+                    academicYear: academicYear,
+                    address: address,
+                    activityKey: activityKey,
+                    activityTypeText: activitySelect.options[activitySelect.selectedIndex].text,
+                    selectedActivities: selectedActivitiesList,
+                    fineArts: fineArtsData,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent.substring(0, 200)
+                };
+
+                // ─── Loading ───
+                const originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <span>جاري إرسال البيانات...</span>
+                    <svg class="animate-spin h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                `;
+
+                try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.status === 'success') {
+                        saveRegistration(payload);
+                        hideAlert();
+                        showLockedScreen({
+                            fullName: payload.fullName,
+                            nationalId: payload.nationalId,
+                            registeredAt: new Date().toISOString()
+                        });
+                    } else if (result.status === 'duplicate') {
+                        showAlert("هذا الرقم القومي مسجل بالفعل في النظام. إذا كنت تعتقد أن هناك خطأ، تواصل مع رعاية الطلاب.");
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHtml;
+                    } else {
+                        showAlert(result.message || "حدث خطأ أثناء التسجيل. حاول مرة أخرى.");
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHtml;
+                    }
+
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    showAlert("تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
+            });
         }
 
-        // Helper to show inline errors temporarily
-        function showTempError(msg) {
-            const errDiv = document.createElement('div');
-            errDiv.className = "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 text-sm font-bold";
-            errDiv.textContent = msg;
-            
-            const insertBeforeNode = document.getElementById('dynamicActivities');
-            insertBeforeNode.parentNode.insertBefore(errDiv, insertBeforeNode);
-            
-            setTimeout(() => {
-                errDiv.remove();
-            }, 4000);
+        function showAlert(msg) {
+            errorAlertText.textContent = msg;
+            errorAlert.classList.remove('hidden');
+            errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function hideAlert() {
+            errorAlert.classList.add('hidden');
         }
     </script>
 </body>
