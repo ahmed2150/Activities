@@ -208,7 +208,7 @@
 
                     <!-- اختيار النشاط -->
                     <div>
-                        <h3 class="text-lg sm:text-xl font-black text-primary mb-4 sm:mb-5">اختيار النشاط المطلوب</h3>
+                        <h3 class="text-lg sm:text-xl font-black text-primary mb-4 sm:mb-5"> اختيار النشاط المطلوب (التسجيل للطلاب الموهوبون فقط) </h3>
 
                         <div class="mb-6">
                             <label for="activityType" class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
@@ -219,6 +219,8 @@
                                 <option value="social">النشاط الاجتماعي</option>
                                 <option value="artistic">النشاط الفني</option>
                                 <option value="sports">النشاط الرياضي</option>
+                                <option value="scouting">نشاط الجوالة </option>
+                                
                             </select>
                         </div>
 
@@ -235,6 +237,7 @@
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="زجل" class="peer sr-only"><div class="chip-style">زجل</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="حفظ القرآن كاملاً" class="peer sr-only"><div class="chip-style">حفظ القرآن كامل</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="حفظ نصف القرآن" class="peer sr-only"><div class="chip-style">حفظ نصف القرآن</div></label>
+                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="حفظ جزء عم" class="peer sr-only"><div class="chip-style">حفظ جزء عم</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الأحاديث الشريفة" class="peer sr-only"><div class="chip-style">الأحاديث الشريفة</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الالقاء" class="peer sr-only"><div class="chip-style">الإلقاء</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الخطابة" class="peer sr-only"><div class="chip-style">الخطابة</div></label>
@@ -248,6 +251,7 @@
                                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="scientific_sub" value="برمجه" class="peer sr-only"><div class="chip-style">برمجة</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="scientific_sub" value="تصميم المواقع" class="peer sr-only"><div class="chip-style">تصميم المواقع</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="scientific_sub" value="دوري المعلومات" class="peer sr-only"><div class="chip-style">دوري المعلومات</div></label>
                                     <label class="cursor-pointer h-full col-span-2 sm:col-span-1"><input type="checkbox" name="scientific_sub" value="ابحاث علمية" class="peer sr-only"><div class="chip-style">أبحاث علمية</div></label>
                                 </div>
                             </div>
@@ -255,9 +259,14 @@
                             <!-- Social -->
                             <div id="section_social" class="activity-section hidden space-y-4">
                                 <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الاجتماعي (اختر مجالاً أو أكثر):</h4>
-                                <div class="grid grid-cols-2 gap-2.5">
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الشطرنج" class="peer sr-only"><div class="chip-style">الشطرنج</div></label>
-                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="ابحاث اجتماعية" class="peer sr-only"><div class="chip-style">أبحاث اجتماعية</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الهلال الاحمر" class="peer sr-only"><div class="chip-style">الهلال الاحمر</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الرحلات" class="peer sr-only"><div class="chip-style">الرحلات</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="التبرع بالدم" class="peer sr-only"><div class="chip-style">التبرع بالدم</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الطالب زالطالبة المثالية" class="peer sr-only"><div class="chip-style">الطالب والطالبة المثالية</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value=" الاعمال التطوعية" class="peer sr-only"><div class="chip-style">الاعمال التطويعية</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الابحاث الاجتماعية" class="peer sr-only"><div class="chip-style">الأبحاث الاجتماعية</div></label>
                                 </div>
                             </div>
 
@@ -280,17 +289,58 @@
                                 </div>
                             </div>
 
+                            <!-- Scouting -->
+                            <div id="section_scouting" class="activity-section hidden space-y-4">
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات نشاط الجوالة (اختر مجالاً أو أكثر):</h4>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="scouting_sub" value="معسكرات" class="peer sr-only"><div class="chip-style">المعسكرات</div></label>
+                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الهلال الاحمر" class="peer sr-only"><div class="chip-style">الهلال الاحمر</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="scouting_sub" value="الكشافة" class="peer sr-only"><div class="chip-style">الكشافة</div></label>
+                                </div>
+                            </div>
+
+                            
+
                             <!-- Artistic -->
                             <div id="section_artistic" class="activity-section hidden space-y-4">
                                 <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الفني (اختر مجالاً أو أكثر):</h4>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4">
-                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="غناء" class="peer sr-only"><div class="chip-style">غناء</div></label>
-                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="عزف" class="peer sr-only"><div class="chip-style">عزف آلات</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="مسرح" class="peer sr-only"><div class="chip-style">المسرح</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="غناء فردي" class="peer sr-only"><div class="chip-style">غناء فردي</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="غناء جماعي" class="peer sr-only"><div class="chip-style">غناء جماعي</div></label>
+                                    <label class="cursor-pointer h-full">
+                                        <input type="checkbox" id="checkInstruments" name="artistic_sub" value="عزف" class="peer sr-only">
+                                        <div class="chip-special">عزف</div>
+                                    </label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="اناشيد" class="peer sr-only"><div class="chip-style">أناشيد</div></label>
                                     <label class="cursor-pointer h-full">
                                         <input type="checkbox" id="checkFineArts" name="artistic_sub" value="الفن التشكيلي" class="peer sr-only">
                                         <div class="chip-special">الفن التشكيلي</div>
                                     </label>
+                                </div>
+
+                                <!-- Instruments Submenu -->
+                                <div id="instrumentsDetails" class="hidden mt-4 sm:mt-6 bg-white/80 p-4 sm:p-5 rounded-2xl border border-blue-200 shadow-lg space-y-5">
+                                    <h5 class="text-base sm:text-lg font-bold text-primary border-b border-blue-100 pb-2.5 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                                        </svg>
+                                        الآلات الموسيقية <span class="text-red-500 text-sm">(اختر آلة أو أكثر)</span>
+                                    </h5>
+                                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="بيانو" class="peer sr-only"><div class="chip-sm">بيانو</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="جيتار" class="peer sr-only"><div class="chip-sm">جيتار</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="كمان" class="peer sr-only"><div class="chip-sm">كمان</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="عود" class="peer sr-only"><div class="chip-sm">عود</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="ناي" class="peer sr-only"><div class="chip-sm">ناي</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="درامز" class="peer sr-only"><div class="chip-sm">درامز</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="أكورديون" class="peer sr-only"><div class="chip-sm">أكورديون</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="ساكسفون" class="peer sr-only"><div class="chip-sm">ساكسفون</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="ترومبيت" class="peer sr-only"><div class="chip-sm">ترومبيت</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="تشيلو" class="peer sr-only"><div class="chip-sm">تشيلو</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="أورج" class="peer sr-only"><div class="chip-sm">أورج</div></label>
+                                        <label class="cursor-pointer h-full"><input type="checkbox" name="instruments_sub" value="آلات إيقاع" class="peer sr-only"><div class="chip-sm">آلات إيقاع</div></label>
+                                    </div>
                                 </div>
 
                                 <div id="fineArtsDetails" class="hidden mt-4 sm:mt-6 bg-white/80 p-4 sm:p-5 rounded-2xl border border-blue-200 shadow-lg space-y-5">
@@ -376,9 +426,9 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════
-        //  ⚠️⚠️ ضع رابط الـ Web App هنا ⚠️⚠️
+        //  ⚠️⚠️ رابط الـ Web App الجديد ⚠️⚠️
         // ═══════════════════════════════════════════════════════════
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7KahJgzymdy83jX1Wj7lyWjzrNDuf2LIufSgtgjcU1SW5eWq2HKEtTb8Qu0qN8kQtWg/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzi90U4l47yTlHIEQQH350fBLj6_kcGEDpLmWrB9pLM1BINUsLd13Is2Yd0CfuhtZyQ/exec';
         const STORAGE_KEY = 'dhic_activity_registration';
 
         // ═══════════════════════════════════════════════════════════
@@ -488,7 +538,10 @@
                     });
                 });
 
-                document.getElementById('fineArtsDetails').classList.add('hidden');
+                const fineArtsEl = document.getElementById('fineArtsDetails');
+                if (fineArtsEl) fineArtsEl.classList.add('hidden');
+                const instrumentsEl = document.getElementById('instrumentsDetails');
+                if (instrumentsEl) instrumentsEl.classList.add('hidden');
 
                 if (selectedVal) {
                     dynamicActivitiesContainer.classList.remove('hidden');
@@ -513,6 +566,25 @@
                 } else {
                     fineArtsDetails.classList.add('hidden');
                     fineArtsDetails.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+                        cb.checked = false;
+                    });
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        //  الآلات الموسيقية (عزف)
+        // ═══════════════════════════════════════════════════════════
+        const checkInstruments = document.getElementById('checkInstruments');
+        const instrumentsDetails = document.getElementById('instrumentsDetails');
+
+        if (checkInstruments) {
+            checkInstruments.addEventListener('change', function() {
+                if (this.checked) {
+                    instrumentsDetails.classList.remove('hidden');
+                } else {
+                    instrumentsDetails.classList.add('hidden');
+                    instrumentsDetails.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
                         cb.checked = false;
                     });
                 }
@@ -584,6 +656,11 @@
 
                 // ─── جمع المجالات ───
                 const section = document.getElementById('section_' + activityKey);
+                if (!section) {
+                    showAlert("حدث خطأ في تحديد النشاط. حاول مرة أخرى.");
+                    return;
+                }
+
                 const checkedOptions = section.querySelectorAll('input[type="checkbox"]:not([name^="finearts_"]):checked');
                 if (checkedOptions.length === 0) {
                     showAlert("الرجاء اختيار مجال واحد على الأقل من مجالات النشاط.");
@@ -595,17 +672,25 @@
                     selectedActivitiesList.push(cb.value);
                 });
 
-                // ─── الفن التشكيلي ───
+                // ─── الفن التشكيلي والآلات ───
                 let fineArtsData = { materials: [], drawings: [], talents: [] };
-                if (activityKey === 'artistic' && checkFineArts.checked) {
-                    const getVals = function(name) {
-                        return Array.from(fineArtsDetails.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
+                let instrumentsList = [];
+                if (activityKey === 'artistic') {
+                    if (checkFineArts && checkFineArts.checked) {
+                        const getVals = function(name) {
+                            return Array.from(fineArtsDetails.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
+                                return cb.value;
+                            });
+                        };
+                        fineArtsData.materials = getVals('finearts_materials');
+                        fineArtsData.drawings = getVals('finearts_drawing');
+                        fineArtsData.talents = getVals('finearts_talent');
+                    }
+                    if (checkInstruments && checkInstruments.checked) {
+                        instrumentsList = Array.from(document.querySelectorAll('input[name="instruments_sub"]:checked')).map(function(cb) {
                             return cb.value;
                         });
-                    };
-                    fineArtsData.materials = getVals('finearts_materials');
-                    fineArtsData.drawings = getVals('finearts_drawing');
-                    fineArtsData.talents = getVals('finearts_talent');
+                    }
                 }
 
                 // ─── Payload ───
@@ -619,6 +704,7 @@
                     activityKey: activityKey,
                     activityTypeText: activitySelect.options[activitySelect.selectedIndex].text,
                     selectedActivities: selectedActivitiesList,
+                    instruments: instrumentsList,
                     fineArts: fineArtsData,
                     timestamp: new Date().toISOString(),
                     userAgent: navigator.userAgent.substring(0, 200)
