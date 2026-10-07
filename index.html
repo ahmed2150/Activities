@@ -206,16 +206,13 @@
 
                     <hr class="border-blue-100">
 
-                    <!-- ═══════════════════════════════════════════════════════
-                         اختيار الأنشطة (متعدد)
-                         ═══════════════════════════════════════════════════════ -->
+                    <!-- اختيار الأنشطة (متعدد) -->
                     <div>
                         <h3 class="text-lg sm:text-xl font-black text-primary mb-2">اختيار الأنشطة المطلوبة</h3>
                         <p class="text-xs sm:text-sm text-gray-600 font-semibold mb-4 sm:mb-5">
                             ✨ يمكنك اختيار <span class="text-primary font-black">نشاط واحد أو أكثر</span> — التسجيل للطلاب الموهوبين فقط
                         </p>
 
-                        <!-- نوع النشاط الأساسي (متعدد) -->
                         <div class="mb-6">
                             <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-3">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
@@ -246,7 +243,6 @@
                             </div>
                         </div>
 
-                        <!-- الأقسام الديناميكية -->
                         <div id="dynamicActivities" class="bg-white/60 backdrop-blur-sm p-3.5 sm:p-5 rounded-2xl border border-blue-100 shadow-inner hidden space-y-6">
 
                             <!-- Cultural -->
@@ -447,9 +443,9 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════
-        //  ⚠️⚠️ رابط الـ Web App ⚠️⚠️
+        //  ⚠️⚠️ رابط الـ Web App الجديد ⚠️⚠️
         // ═══════════════════════════════════════════════════════════
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzi90U4l47yTlHIEQQH350fBLj6_kcGEDpLmWrB9pLM1BINUsLd13Is2Yd0CfuhtZyQ/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPHwI75GanRQL2Gat4JQAhViQiZ43WwQ0z_l9p7PinenvlvDNzIq0LgRvWL-LPZsuw/exec';
         const STORAGE_KEY = 'dhic_activity_registration';
 
         // أسماء الأنشطة للعرض
@@ -570,10 +566,8 @@
         const instrumentsDetails = document.getElementById('instrumentsDetails');
 
         function updateActivitySections() {
-            // جلب الأنشطة المختارة
             const selectedKeys = Array.from(document.querySelectorAll('.activity-main-checkbox:checked')).map(cb => cb.value);
 
-            // إخفاء جميع الأقسام
             activitySections.forEach(function(section) {
                 section.classList.add('hidden');
             });
@@ -585,7 +579,6 @@
 
             dynamicActivitiesContainer.classList.remove('hidden');
 
-            // إظهار الأقسام المختارة فقط
             selectedKeys.forEach(function(key) {
                 const target = document.getElementById('section_' + key);
                 if (target) target.classList.remove('hidden');
@@ -724,7 +717,6 @@
                     const section = document.getElementById('section_' + key);
                     if (!section) continue;
 
-                    // جمع المجالات المختارة (استثناء تفاصيل الفن والآلات)
                     const checkedOptions = section.querySelectorAll('input[type="checkbox"]:checked:not([name^="finearts_"]):not([name="instruments_sub"])');
 
                     if (checkedOptions.length === 0) {
