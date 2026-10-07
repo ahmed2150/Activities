@@ -148,7 +148,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        البيانات الأساسية واختيار النشاط
+                        البيانات الأساسية واختيار الأنشطة
                     </h2>
                 </div>
 
@@ -206,29 +206,52 @@
 
                     <hr class="border-blue-100">
 
-                    <!-- اختيار النشاط -->
+                    <!-- ═══════════════════════════════════════════════════════
+                         اختيار الأنشطة (متعدد)
+                         ═══════════════════════════════════════════════════════ -->
                     <div>
-                        <h3 class="text-lg sm:text-xl font-black text-primary mb-4 sm:mb-5"> اختيار النشاط المطلوب (التسجيل للطلاب الموهوبون فقط) </h3>
+                        <h3 class="text-lg sm:text-xl font-black text-primary mb-2">اختيار الأنشطة المطلوبة</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 font-semibold mb-4 sm:mb-5">
+                            ✨ يمكنك اختيار <span class="text-primary font-black">نشاط واحد أو أكثر</span> — التسجيل للطلاب الموهوبين فقط
+                        </p>
 
+                        <!-- نوع النشاط الأساسي (متعدد) -->
                         <div class="mb-6">
-                            <label for="activityType" class="block text-xs sm:text-sm font-bold text-gray-700 mb-2">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
-                            <select id="activityType" required class="input-field bg-white">
-                                <option value="">اختر نوع النشاط...</option>
-                                <option value="cultural">النشاط الثقافي</option>
-                                <option value="scientific">النشاط العلمي</option>
-                                <option value="social">النشاط الاجتماعي</option>
-                                <option value="artistic">النشاط الفني</option>
-                                <option value="sports">النشاط الرياضي</option>
-                                <option value="scouting">نشاط الجوالة </option>
-                                
-                            </select>
+                            <label class="block text-xs sm:text-sm font-bold text-gray-700 mb-3">نوع النشاط الأساسي <span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
+                                <label class="cursor-pointer h-full">
+                                    <input type="checkbox" name="activity_main" value="cultural" class="peer sr-only activity-main-checkbox">
+                                    <div class="chip-main">🎭 النشاط الثقافي</div>
+                                </label>
+                                <label class="cursor-pointer h-full">
+                                    <input type="checkbox" name="activity_main" value="scientific" class="peer sr-only activity-main-checkbox">
+                                    <div class="chip-main">🔬 النشاط العلمي</div>
+                                </label>
+                                <label class="cursor-pointer h-full">
+                                    <input type="checkbox" name="activity_main" value="social" class="peer sr-only activity-main-checkbox">
+                                    <div class="chip-main">🤝 النشاط الاجتماعي</div>
+                                </label>
+                                <label class="cursor-pointer h-full">
+                                    <input type="checkbox" name="activity_main" value="artistic" class="peer sr-only activity-main-checkbox">
+                                    <div class="chip-main">🎨 النشاط الفني</div>
+                                </label>
+                                <label class="cursor-pointer h-full">
+                                    <input type="checkbox" name="activity_main" value="sports" class="peer sr-only activity-main-checkbox">
+                                    <div class="chip-main">⚽ النشاط الرياضي</div>
+                                </label>
+                                <label class="cursor-pointer h-full">
+                                    <input type="checkbox" name="activity_main" value="scouting" class="peer sr-only activity-main-checkbox">
+                                    <div class="chip-main">🏕️ نشاط الجوالة</div>
+                                </label>
+                            </div>
                         </div>
 
-                        <div id="dynamicActivities" class="bg-white/60 backdrop-blur-sm p-3.5 sm:p-5 rounded-2xl border border-blue-100 shadow-inner hidden">
+                        <!-- الأقسام الديناميكية -->
+                        <div id="dynamicActivities" class="bg-white/60 backdrop-blur-sm p-3.5 sm:p-5 rounded-2xl border border-blue-100 shadow-inner hidden space-y-6">
 
                             <!-- Cultural -->
                             <div id="section_cultural" class="activity-section hidden space-y-4">
-                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الثقافي (اختر مجالاً أو أكثر):</h4>
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">🎭 مجالات النشاط الثقافي (اختر مجالاً أو أكثر):</h4>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="انشاد" class="peer sr-only"><div class="chip-style">انشاد</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="ترانيم" class="peer sr-only"><div class="chip-style">ترانيم</div></label>
@@ -237,7 +260,7 @@
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="زجل" class="peer sr-only"><div class="chip-style">زجل</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="حفظ القرآن كاملاً" class="peer sr-only"><div class="chip-style">حفظ القرآن كامل</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="حفظ نصف القرآن" class="peer sr-only"><div class="chip-style">حفظ نصف القرآن</div></label>
-                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="حفظ جزء عم" class="peer sr-only"><div class="chip-style">حفظ جزء عم</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="حفظ جزء عم" class="peer sr-only"><div class="chip-style">حفظ جزء عم</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الأحاديث الشريفة" class="peer sr-only"><div class="chip-style">الأحاديث الشريفة</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الالقاء" class="peer sr-only"><div class="chip-style">الإلقاء</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="cultural_sub" value="الخطابة" class="peer sr-only"><div class="chip-style">الخطابة</div></label>
@@ -247,7 +270,7 @@
 
                             <!-- Scientific -->
                             <div id="section_scientific" class="activity-section hidden space-y-4">
-                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط العلمي (اختر مجالاً أو أكثر):</h4>
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">🔬 مجالات النشاط العلمي (اختر مجالاً أو أكثر):</h4>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="scientific_sub" value="برمجه" class="peer sr-only"><div class="chip-style">برمجة</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="scientific_sub" value="تصميم المواقع" class="peer sr-only"><div class="chip-style">تصميم المواقع</div></label>
@@ -258,21 +281,21 @@
 
                             <!-- Social -->
                             <div id="section_social" class="activity-section hidden space-y-4">
-                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الاجتماعي (اختر مجالاً أو أكثر):</h4>
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">🤝 مجالات النشاط الاجتماعي (اختر مجالاً أو أكثر):</h4>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الشطرنج" class="peer sr-only"><div class="chip-style">الشطرنج</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الهلال الاحمر" class="peer sr-only"><div class="chip-style">الهلال الاحمر</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الرحلات" class="peer sr-only"><div class="chip-style">الرحلات</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="التبرع بالدم" class="peer sr-only"><div class="chip-style">التبرع بالدم</div></label>
-                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الطالب زالطالبة المثالية" class="peer sr-only"><div class="chip-style">الطالب والطالبة المثالية</div></label>
-                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value=" الاعمال التطوعية" class="peer sr-only"><div class="chip-style">الاعمال التطويعية</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الطالب والطالبة المثالية" class="peer sr-only"><div class="chip-style">الطالب والطالبة المثالية</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الاعمال التطوعية" class="peer sr-only"><div class="chip-style">الأعمال التطوعية</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الابحاث الاجتماعية" class="peer sr-only"><div class="chip-style">الأبحاث الاجتماعية</div></label>
                                 </div>
                             </div>
 
                             <!-- Sports -->
                             <div id="section_sports" class="activity-section hidden space-y-4">
-                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الرياضي (اختر مجالاً أو أكثر):</h4>
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">⚽ مجالات النشاط الرياضي (اختر مجالاً أو أكثر):</h4>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة قدم" class="peer sr-only"><div class="chip-style">كرة قدم</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="sports_sub" value="كرة طائرة" class="peer sr-only"><div class="chip-style">كرة طائرة</div></label>
@@ -291,19 +314,17 @@
 
                             <!-- Scouting -->
                             <div id="section_scouting" class="activity-section hidden space-y-4">
-                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات نشاط الجوالة (اختر مجالاً أو أكثر):</h4>
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">🏕️ مجالات نشاط الجوالة (اختر مجالاً أو أكثر):</h4>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="scouting_sub" value="معسكرات" class="peer sr-only"><div class="chip-style">المعسكرات</div></label>
-                                     <label class="cursor-pointer h-full"><input type="checkbox" name="social_sub" value="الهلال الاحمر" class="peer sr-only"><div class="chip-style">الهلال الاحمر</div></label>
+                                    <label class="cursor-pointer h-full"><input type="checkbox" name="scouting_sub" value="الهلال الاحمر" class="peer sr-only"><div class="chip-style">الهلال الاحمر</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="scouting_sub" value="الكشافة" class="peer sr-only"><div class="chip-style">الكشافة</div></label>
                                 </div>
                             </div>
 
-                            
-
                             <!-- Artistic -->
                             <div id="section_artistic" class="activity-section hidden space-y-4">
-                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">مجالات النشاط الفني (اختر مجالاً أو أكثر):</h4>
+                                <h4 class="font-bold text-sm sm:text-md text-gray-800 mb-3">🎨 مجالات النشاط الفني (اختر مجالاً أو أكثر):</h4>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4">
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="مسرح" class="peer sr-only"><div class="chip-style">المسرح</div></label>
                                     <label class="cursor-pointer h-full"><input type="checkbox" name="artistic_sub" value="غناء فردي" class="peer sr-only"><div class="chip-style">غناء فردي</div></label>
@@ -426,10 +447,20 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════
-        //  ⚠️⚠️ رابط الـ Web App الجديد ⚠️⚠️
+        //  ⚠️⚠️ رابط الـ Web App ⚠️⚠️
         // ═══════════════════════════════════════════════════════════
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzi90U4l47yTlHIEQQH350fBLj6_kcGEDpLmWrB9pLM1BINUsLd13Is2Yd0CfuhtZyQ/exec';
         const STORAGE_KEY = 'dhic_activity_registration';
+
+        // أسماء الأنشطة للعرض
+        const ACTIVITY_NAMES = {
+            cultural: 'النشاط الثقافي',
+            scientific: 'النشاط العلمي',
+            social: 'النشاط الاجتماعي',
+            artistic: 'النشاط الفني',
+            sports: 'النشاط الرياضي',
+            scouting: 'نشاط الجوالة'
+        };
 
         // ═══════════════════════════════════════════════════════════
         //  🔒 فحص التسجيل السابق
@@ -500,6 +531,13 @@
         });
 
         // ═══════════════════════════════════════════════════════════
+        //  🎯 Chip خاص بأزرار الأنشطة الرئيسية (متعدد)
+        // ═══════════════════════════════════════════════════════════
+        document.querySelectorAll('.chip-main').forEach(function(el) {
+            el.className = "px-3 py-3.5 sm:py-4 rounded-2xl border-2 border-blue-200 bg-white text-primary font-extrabold text-center text-xs sm:text-sm transition-all duration-300 peer-checked:bg-gradient-to-br peer-checked:from-primary peer-checked:to-secondary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-xl peer-checked:-translate-y-1 hover:border-secondary hover:shadow-md select-none h-full min-h-[56px] flex items-center justify-center leading-snug cursor-pointer";
+        });
+
+        // ═══════════════════════════════════════════════════════════
         //  المحافظات
         // ═══════════════════════════════════════════════════════════
         const governorates = [
@@ -521,44 +559,69 @@
         }
 
         // ═══════════════════════════════════════════════════════════
-        //  تبديل الأقسام
+        //  🎯 تبديل الأقسام - دعم اختيار متعدد
         // ═══════════════════════════════════════════════════════════
-        const activitySelect = document.getElementById('activityType');
+        const activityMainCheckboxes = document.querySelectorAll('.activity-main-checkbox');
         const dynamicActivitiesContainer = document.getElementById('dynamicActivities');
         const activitySections = document.querySelectorAll('.activity-section');
+        const checkFineArts = document.getElementById('checkFineArts');
+        const fineArtsDetails = document.getElementById('fineArtsDetails');
+        const checkInstruments = document.getElementById('checkInstruments');
+        const instrumentsDetails = document.getElementById('instrumentsDetails');
 
-        if (activitySelect) {
-            activitySelect.addEventListener('change', function() {
-                const selectedVal = this.value;
+        function updateActivitySections() {
+            // جلب الأنشطة المختارة
+            const selectedKeys = Array.from(document.querySelectorAll('.activity-main-checkbox:checked')).map(cb => cb.value);
 
-                activitySections.forEach(function(section) {
-                    section.classList.add('hidden');
+            // إخفاء جميع الأقسام
+            activitySections.forEach(function(section) {
+                section.classList.add('hidden');
+            });
+
+            if (selectedKeys.length === 0) {
+                dynamicActivitiesContainer.classList.add('hidden');
+                return;
+            }
+
+            dynamicActivitiesContainer.classList.remove('hidden');
+
+            // إظهار الأقسام المختارة فقط
+            selectedKeys.forEach(function(key) {
+                const target = document.getElementById('section_' + key);
+                if (target) target.classList.remove('hidden');
+            });
+
+            // إذا تم إلغاء النشاط الفني → إخفاء التفاصيل الفرعية
+            if (!selectedKeys.includes('artistic')) {
+                if (fineArtsDetails) {
+                    fineArtsDetails.classList.add('hidden');
+                    fineArtsDetails.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
+                }
+                if (instrumentsDetails) {
+                    instrumentsDetails.classList.add('hidden');
+                    instrumentsDetails.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
+                }
+                if (checkFineArts) checkFineArts.checked = false;
+                if (checkInstruments) checkInstruments.checked = false;
+            }
+
+            // إذا تم إلغاء نشاط → إلغاء تحديد كل مجالاته
+            activitySections.forEach(function(section) {
+                if (section.classList.contains('hidden')) {
                     section.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
                         cb.checked = false;
                     });
-                });
-
-                const fineArtsEl = document.getElementById('fineArtsDetails');
-                if (fineArtsEl) fineArtsEl.classList.add('hidden');
-                const instrumentsEl = document.getElementById('instrumentsDetails');
-                if (instrumentsEl) instrumentsEl.classList.add('hidden');
-
-                if (selectedVal) {
-                    dynamicActivitiesContainer.classList.remove('hidden');
-                    const target = document.getElementById('section_' + selectedVal);
-                    if (target) target.classList.remove('hidden');
-                } else {
-                    dynamicActivitiesContainer.classList.add('hidden');
                 }
             });
         }
 
-        // ═══════════════════════════════════════════════════════════
-        //  الفن التشكيلي
-        // ═══════════════════════════════════════════════════════════
-        const checkFineArts = document.getElementById('checkFineArts');
-        const fineArtsDetails = document.getElementById('fineArtsDetails');
+        activityMainCheckboxes.forEach(function(cb) {
+            cb.addEventListener('change', updateActivitySections);
+        });
 
+        // ═══════════════════════════════════════════════════════════
+        //  الفن التشكيلي (تابع للنشاط الفني)
+        // ═══════════════════════════════════════════════════════════
         if (checkFineArts) {
             checkFineArts.addEventListener('change', function() {
                 if (this.checked) {
@@ -573,11 +636,8 @@
         }
 
         // ═══════════════════════════════════════════════════════════
-        //  الآلات الموسيقية (عزف)
+        //  الآلات الموسيقية (تابع للنشاط الفني)
         // ═══════════════════════════════════════════════════════════
-        const checkInstruments = document.getElementById('checkInstruments');
-        const instrumentsDetails = document.getElementById('instrumentsDetails');
-
         if (checkInstruments) {
             checkInstruments.addEventListener('change', function() {
                 if (this.checked) {
@@ -610,9 +670,8 @@
                 const governorate = document.getElementById('governorate').value;
                 const academicYear = document.getElementById('academicYear').value;
                 const address = document.getElementById('address').value.trim();
-                const activityKey = activitySelect.value;
 
-                // ─── التحقق ───
+                // ─── التحقق الأساسي ───
                 if (fullName.length < 8) {
                     showAlert("الرجاء إدخال الاسم الرباعي كاملاً (8 أحرف على الأقل).");
                     document.getElementById('fullName').focus();
@@ -636,9 +695,11 @@
                     return;
                 }
 
-                if (!activityKey) {
-                    showAlert("الرجاء اختيار نوع النشاط.");
-                    activitySelect.focus();
+                // ─── جلب الأنشطة المختارة ───
+                const selectedActivityKeys = Array.from(document.querySelectorAll('.activity-main-checkbox:checked')).map(cb => cb.value);
+
+                if (selectedActivityKeys.length === 0) {
+                    showAlert("الرجاء اختيار نشاط واحد على الأقل.");
                     return;
                 }
 
@@ -654,28 +715,46 @@
                     } catch (err) {}
                 }
 
-                // ─── جمع المجالات ───
-                const section = document.getElementById('section_' + activityKey);
-                if (!section) {
-                    showAlert("حدث خطأ في تحديد النشاط. حاول مرة أخرى.");
+                // ─── جمع المجالات من جميع الأقسام المختارة ───
+                const allSelectedActivities = [];
+                const selectedActivityDetails = [];
+                let validationError = null;
+
+                for (const key of selectedActivityKeys) {
+                    const section = document.getElementById('section_' + key);
+                    if (!section) continue;
+
+                    // جمع المجالات المختارة (استثناء تفاصيل الفن والآلات)
+                    const checkedOptions = section.querySelectorAll('input[type="checkbox"]:checked:not([name^="finearts_"]):not([name="instruments_sub"])');
+
+                    if (checkedOptions.length === 0) {
+                        validationError = "الرجاء اختيار مجال واحد على الأقل من قسم: " + ACTIVITY_NAMES[key];
+                        break;
+                    }
+
+                    const sectionActivities = [];
+                    checkedOptions.forEach(function(cb) {
+                        sectionActivities.push(cb.value);
+                        allSelectedActivities.push(cb.value);
+                    });
+
+                    selectedActivityDetails.push({
+                        key: key,
+                        name: ACTIVITY_NAMES[key],
+                        activities: sectionActivities
+                    });
+                }
+
+                if (validationError) {
+                    showAlert(validationError);
                     return;
                 }
 
-                const checkedOptions = section.querySelectorAll('input[type="checkbox"]:not([name^="finearts_"]):checked');
-                if (checkedOptions.length === 0) {
-                    showAlert("الرجاء اختيار مجال واحد على الأقل من مجالات النشاط.");
-                    return;
-                }
-
-                const selectedActivitiesList = [];
-                checkedOptions.forEach(function(cb) {
-                    selectedActivitiesList.push(cb.value);
-                });
-
-                // ─── الفن التشكيلي والآلات ───
+                // ─── الفن التشكيلي والآلات (فقط إذا كان النشاط الفني مختاراً) ───
                 let fineArtsData = { materials: [], drawings: [], talents: [] };
                 let instrumentsList = [];
-                if (activityKey === 'artistic') {
+
+                if (selectedActivityKeys.includes('artistic')) {
                     if (checkFineArts && checkFineArts.checked) {
                         const getVals = function(name) {
                             return Array.from(fineArtsDetails.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
@@ -701,9 +780,10 @@
                     governorate: governorate,
                     academicYear: academicYear,
                     address: address,
-                    activityKey: activityKey,
-                    activityTypeText: activitySelect.options[activitySelect.selectedIndex].text,
-                    selectedActivities: selectedActivitiesList,
+                    activityKeys: selectedActivityKeys,
+                    activityTypesText: selectedActivityKeys.map(function(k) { return ACTIVITY_NAMES[k]; }).join(' + '),
+                    activitiesDetails: selectedActivityDetails,
+                    selectedActivities: allSelectedActivities,
                     instruments: instrumentsList,
                     fineArts: fineArtsData,
                     timestamp: new Date().toISOString(),
